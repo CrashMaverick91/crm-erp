@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Customer List{% endblock %}
+
+{% block content %}
+<h1>Customer List</h1>
+
+<!-- Add Button for Creating a New Customer -->
+<a href="{% url 'customers:create' %}" class="btn btn-primary mb-3">Add New Customer</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Business Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Actions</th> <!-- Add a column for action buttons -->
+        </tr>
+    </thead>
+    <tbody>
+        {% for customer in customers %}
+        <tr>
+            <td>{{ customer.business_name }}</td>
+            <td>{{ customer.email }}</td>
+            <td>{{ customer.phone }}</td>
+            <td>
+                <!-- Action Buttons -->
+                <a href="{% url 'customers:read' customer.id %}" class="btn btn-info btn-sm">View</a>
+                <a href="{% url 'customers:edit' customer.id %}" class="btn btn-warning btn-sm">Edit</a>
+                <a href="{% url 'customers:delete' customer.id %}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this customer?');">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
