@@ -2,7 +2,7 @@ from django.db import models
 
 class Customer(models.Model):
     business_name = models.CharField(max_length=255, unique=True, default="Unknown")
-    p_iva = models.CharField("VAT Number", max_length=20, unique=True, blank=True, null=True)
+    p_iva = models.CharField("P.IVA", max_length=20, unique=True, blank=True, null=True)
     sdi_code = models.CharField("SDI Code", max_length=20, blank=True, null=True)
     pec = models.EmailField("PEC Email", blank=True, null=True)
     email = models.EmailField("Regular Email", blank=True, null=True)

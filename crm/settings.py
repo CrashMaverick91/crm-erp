@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'customers' , # Add the customers app to the list of installed apps
+    'django_extensions',  # Add this line
 ]
 
 MIDDLEWARE = [

@@ -1,6 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Customer, ContactPerson
 from .forms import CustomerForm, ContactPersonForm
+from django.contrib import messages
+
+
 
 def customer_list(request):
     customers = Customer.objects.all()
@@ -17,6 +20,7 @@ def create_customer(request):
     return render(request, 'customers/customer_form.html', {'form': form})
 
 def edit_customer(request, id):
+    print("Rendering template: customers/customer_edit.html")  # Debug statement
     customer = get_object_or_404(Customer, id=id)
     if request.method == "POST":
         form = CustomerForm(request.POST, instance=customer)
@@ -25,7 +29,7 @@ def edit_customer(request, id):
             return redirect('customers:list')
     else:
         form = CustomerForm(instance=customer)
-    return render(request, 'customers/customer_form.html', {'form': form})
+    return render(request, 'customers/customer_edit.html', {'form': form, 'customer': customer})
 
 def read_customer(request, id):
     customer = get_object_or_404(Customer, id=id)
@@ -37,3 +41,20 @@ def delete_customer(request, id):
         customer.delete()
         return redirect('customers:list')
     return render(request, 'customers/customer_confirm_delete.html', {'customer': customer})
+
+def add_customer(request):
+    if request.method == "POST":
+        form = CustomerForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Customer added successfully!")
+            return redirect('customers:list')  # Replace with the name of your customer list view
+    else:
+        form = CustomerForm()
+    return render(request, 'customers/add_customer.html', {'form': form})
+
+
+# Existing views above...
+
+def home_view(request):
+    return render(request, 'customers/home.html')  # we'll create home.html next

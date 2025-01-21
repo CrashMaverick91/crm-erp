@@ -20,7 +20,7 @@ from customers import views  # Import the customer_list view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('customers/', include('customers.urls')),  # URL for customers app
-    path('', views.customer_list, name='home'),  # Root URL points to customer_list
+    path('customers/', include(('customers.urls', 'customers'), namespace='customers')),  # URL for customers app
+    path('', views.home_view, name='home'),  # Root URL points to customer_list
 ]
 
