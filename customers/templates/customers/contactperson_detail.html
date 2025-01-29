@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Contact Person Detail</h2>
+  <p><strong>First Name:</strong> {{ contact.first_name }}</p>
+  <p><strong>Last Name:</strong> {{ contact.last_name }}</p>
+  <p><strong>Mobile Phone:</strong> {{ contact.cell }}</p>
+  <p><strong>Email:</strong> {{ contact.email }}</p>
+  <p><strong>Role/Position:</strong> {{ contact.role }}</p>
+  <p><strong>Customer:</strong> {{ contact.customer.business_name }}</p>
+  <hr/>
+  <a href="{% url 'customers:contactperson_edit' contact.id %}">Edit</a> |
+  <a href="{% url 'customers:contactperson_delete' contact.id %}">Delete</a> |
+  <a href="{% url 'customers:contactperson_list' %}">Back to List</a>
+{% endblock %}

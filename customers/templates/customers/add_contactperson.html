@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load form_tags %}  <!-- Load your custom template tags if needed -->
+
+{% block content %}
+<h1 class="mb-4">Add New Contact Person</h1>
+<form method="post" class="row g-3">
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+            {{ field|add_class:"form-control" }}
+            {% if field.errors %}
+            <div class="text-danger">
+                {{ field.errors }}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Contact Persons</h2>
+  <ul>
+    {% for contact in contacts %}
+      <li>
+        <a href="{% url 'customers:contactperson_detail' contact.id %}">
+          {{ contact.first_name }} {{ contact.last_name }}
+        </a> 
+        - ({{ contact.customer.business_name }})
+      </li>
+    {% endfor %}
+  </ul>
+
+  <a href="{% url 'customers:contactperson_create' %}">Add New Contact Person</a>
+{% endblock %}

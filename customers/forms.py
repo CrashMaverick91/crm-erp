@@ -11,5 +11,5 @@ class CustomerForm(forms.ModelForm):
 class ContactPersonForm(forms.ModelForm):
     class Meta:
         model = ContactPerson
-        fields = ['first_name', 'last_name', 'cell', 'email', 'role', 'customer']
+        fields = ['customer', 'first_name', 'last_name', 'cell', 'email', 'role']
 
